@@ -186,6 +186,6 @@ def pss_align (query,subject):
     for i in subject:
         subject_file.write(i)
     subject_file.close()
-    result=os.popen('perl SSEalign_two_groups.pl tmp/temp_ss_align_query tmp/temp_ss_align_subject').read()
+    result=os.popen('perl SSEalign_psstools.pl tmp/temp_ss_align_query tmp/temp_ss_align_subject').read()
     shutil.rmtree('tmp')
     return result
