@@ -10,4 +10,6 @@ O script "psstools.py" contém as seguintes funções:
 
 Além disso, contém a classe "PSSVect", responsável pela vetorização das estruturas secundárias e aminoácidos de proteínas. Os métodos de vetorização contidos na  classe são baseados no procedimento apresentado pela Mathwork em "https://www.mathworks.com/help/bioinfo/examples/predicting-protein-secondary-structure-using-a-neural-network.html".
 
-##em atualiuzação##
+A iniciação de um objeto com a classe "PSSVect" pode ser feita sem a inserção de nenhum argumento, uma vez que a única entrada dela ("tamanho_janela_movel") possuí um valor padrão definido. A entrada "tamanho_janela_movel", que tem por padrão o valor 17, é reponsável por especificar o tamanho da janela móvel, que será utilizada para percorrer as sequências no método de vetorização das estruturas secundárias e aminoácidos.
+
+##em atualização##
