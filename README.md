@@ -4,9 +4,11 @@ Este repositório contém as ferramentas necessárias para obter e tratar dados 
 
 O script "psstools.py" contém as seguintes funções:
 
-- down_ss -> executa o download e descompactação do arquivo presente em "https://cdn.rcsb.org/etl/kabschSander/ss.txt.gz", um arquivo com os dados de estruturas secundárias de proteínas obtidos experimentalmente, mantido pelo PDB;
+- pss_down -> executa o download e descompactação do arquivo presente em "https://cdn.rcsb.org/etl/kabschSander/ss.txt.gz", um arquivo com os dados de estruturas secundárias de proteínas obtidos experimentalmente, mantido pelo PDB;
 
-- format_ss -> faz a leitura e formatação do arquivo "ss.txt", obtido pela função anterior. Ao executar a "format_ss" é gerado o arquivo "ss2.txt", que tem o formato necessário para rodar as funções posteriores.
+- pss_format -> faz a leitura e formatação do arquivo "ss.txt", obtido pela função anterior. Ao executar a "format_ss" é gerado o arquivo "ss2.txt", que tem o formato necessário para rodar as funções posteriores.
+
+- pss_align -> Faz o alinhamento entre duas estruturas secundárias colocadas como entrada. A ssp_align utiliza o script "SSEalign_psstools.pl", uma versão modificada do script "SSEalign_two_groups.pl", disponível em "https://github.com/yangzhiyuansibs/SSEalign".
 
 Além disso, contém a classe "PSSVect", responsável pela vetorização das estruturas secundárias e aminoácidos de proteínas. Os métodos de vetorização contidos na  classe são baseados no procedimento apresentado pela Mathwork em "https://www.mathworks.com/help/bioinfo/examples/predicting-protein-secondary-structure-using-a-neural-network.html".
 
