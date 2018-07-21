@@ -12,7 +12,7 @@ import os
 import random
 
 
-class SSVect:
+class PSSVect:
     def __init__(self, tamanho_janela_movel=17):
         self.tamanho_janela_movel = tamanho_janela_movel
 
