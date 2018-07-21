@@ -10,6 +10,7 @@ import shutil
 import math
 import os
 import random
+import shutil
 
 
 class PSSVect:
@@ -41,7 +42,7 @@ class PSSVect:
                 self.sequencias.append(j)
         return self.sequencias
 
-    def ss2vect(self,ss):
+    def pss2vect(self,ss):
         dssp_dict = {'C':0,'E':1,'H':2}
         ss_num=[]
         for i,w in enumerate(ss):
@@ -63,7 +64,7 @@ class PSSVect:
                 self.estruturas.append(j)
         return self.estruturas
 
-    def ss_prediction(self,seq,mlp):
+    def pss_prediction(self,seq,mlp):
         vect = self.aa2vect(seq)
         predictions = mlp.predict(vect)
         self.ss_predic=''
@@ -96,14 +97,14 @@ class PSSVect:
         
         return self.ss_predic
 
-def down_ss():
+def pss_down():
     urllib.request.urlretrieve ("https://cdn.rcsb.org/etl/kabschSander/ss.txt.gz", "ss.txt.gz")
     with gzip.open('ss.txt.gz', 'rb') as f_in:
         with open('ss.txt', 'wb') as f_out:
             shutil.copyfileobj(f_in, f_out)
 
 #função para formatar os dados do arquivo ss do PDB (https://www.rcsb.org/pdb/static.do?p=download/http/index.html)
-def format_ss():
+def pss_format():
     ss_name='ss.txt'
     ssForm_name='ss2.txt'
     file = open (ss_name,'r')
@@ -136,7 +137,7 @@ def format_ss():
     out.close()
 
 #função para carregar os dados do arquivo ss formatado
-def load_ss(total_de_sequencias=75,tamanho_minimo = 17,random_selection=True,ssForm_name='Ross_Saunder.txt'):
+def pss_load(total_de_sequencias=75,tamanho_minimo = 17,random_selection=True,ssForm_name='Ross_Saunder.txt'):
     #total_de_sequencias recebe o número de sequência que serão carregadas
     #tamanho_minimo recebe o número mínimo de aminoácidos para aceitar uma sequência
     #ssForm_name='ss2.txt'
@@ -161,9 +162,30 @@ def load_ss(total_de_sequencias=75,tamanho_minimo = 17,random_selection=True,ssF
         ss.append(ss_total[i])
     return aa,ss
     
-def ss_hitRate (ss_real,ss_predic):
+def pss_hitRate (ss_real,ss_predic):
     pont=0
     for i,w in enumerate(ss_predic):
         if ss_predic[i] == ss_real[i]:
             pont+=1
     return pont/len(ss_predic)*100
+    
+def pss_align (query,subject):
+    try: 
+        os.mkdir('tmp')
+    except:
+        pass
+    query=query.upper()
+    subject=subject.upper()
+    query_file = open ('tmp/temp_ss_align_query','w')
+    query_file.write('>query\n')
+    for i in query:
+        query_file.write(i)
+    query_file.close()
+    subject_file = open ('tmp/temp_ss_align_subject','w')
+    subject_file.write('>subject\n')
+    for i in subject:
+        subject_file.write(i)
+    subject_file.close()
+    result=os.popen('perl SSEalign_two_groups.pl tmp/temp_ss_align_query tmp/temp_ss_align_subject').read()
+    shutil.rmtree('tmp')
+    return result
