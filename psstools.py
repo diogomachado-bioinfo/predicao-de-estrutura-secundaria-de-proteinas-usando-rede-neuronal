@@ -137,7 +137,7 @@ def pss_format():
     out.close()
 
 #função para carregar os dados do arquivo ss formatado
-def pss_load(total_de_sequencias=75,tamanho_minimo = 17,random_selection=True,ssForm_name='Ross_Saunder.txt'):
+def pss_load(total_de_sequencias=75,tamanho_minimo = 17,random_selection=True,ssForm_name='ss2.txt'):
     #total_de_sequencias recebe o número de sequência que serão carregadas
     #tamanho_minimo recebe o número mínimo de aminoácidos para aceitar uma sequência
     #ssForm_name='ss2.txt'
