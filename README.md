@@ -20,7 +20,7 @@ Além disso, contém a classe **"PSSVect"**, responsável pela vetorização das
 
 A iniciação de um objeto com a classe "PSSVect" pode ser feita sem a inserção de nenhum argumento, uma vez que a única entrada dela ("tamanho_janela_movel") possuí um valor padrão definido. A entrada "tamanho_janela_movel", que tem por padrão o valor 17, é reponsável por especificar o tamanho da janela móvel, que será utilizada para percorrer as sequências no método de vetorização das estruturas secundárias e aminoácidos. Dentro da "PSSVect" existem os seguintes métodos:
 
-- **ss2vect** -> vetoriza as estruturas secundárias;
+- **pss2vect** -> vetoriza as estruturas secundárias;
 - **aa2vect** -> vetoriza os aminoácidos correspondentes aos dados de estrutura secundária;
 - **pss_prediction** -> a partir de uma rede neuronal treinada, faz a predição da estrutura secundária de uma sequência de aminoácidos. A primeira entrada é a sequência de aminoácidos. A segunda entrada é uma rede treinada pela MLPClassifier da biblioteca sklearn.neural_network (informações em: http://scikit-learn.org/stable/modules/neural_networks_supervised.html).
 
