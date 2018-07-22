@@ -14,7 +14,7 @@ O script "psstools.py" contém as seguintes funções:
   - random_selection -> deve ser True ou False. Define se a seleção deve ser aleatório ou pela ordem no arquivo. O padrão é True;
   - ssForm_name -> arquivo em que as sequências serão buscadas. O padrão é o arquivo resultante da função anterior, no entanto é possível utilizar também o arquivo 'Ross_Saunder.txt', presente no repositório do git-hub também. O arquivo 'Ross_Saunder.txt' contém dados de estruturas tradicionalmente utilizadas para o aprendizado de máquina;
 
-- **pss_align** -> faz o alinhamento entre duas estruturas secundárias colocadas como entrada. A ssp_align utiliza o script "SSEalign_psstools.pl", uma versão modificada do script "SSEalign_two_groups.pl", disponível em "https://github.com/yangzhiyuansibs/SSEalign";
+- **pss_align** -> faz o alinhamento entre duas estruturas secundárias colocadas como entrada. A ssp_align utiliza o script "SSEalign_psstools.pl", uma versão modificada do script "SSEalign_two_groups.pl", disponível em "https://github.com/yangzhiyuansibs/SSEalign". O método de alinhamento utilizado foi desenvolvido por Yang et al. (artigo disponível em: https://www.biorxiv.org/content/biorxiv/early/2017/10/10/200915.full.pdf);
 
 Além disso, contém a classe **"PSSVect"**, responsável pela vetorização das estruturas secundárias e aminoácidos de proteínas. Os métodos de vetorização contidos na  classe são baseados no procedimento apresentado pela Mathwork em "https://www.mathworks.com/help/bioinfo/examples/predicting-protein-secondary-structure-using-a-neural-network.html".
 
