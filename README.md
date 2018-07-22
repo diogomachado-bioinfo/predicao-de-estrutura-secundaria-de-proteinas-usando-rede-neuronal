@@ -10,7 +10,7 @@ O script "psstools.py" contém as seguintes funções:
 
 - **pss_load** -> carrega os dados do arquivo formatado pela função anterior. As entradas são:
   - total_de_sequencias -> número de sequências a serem selecionadas. O padrão é 75;
-  - tamanho_minimo -> tamanho mínimo para as sequÊncias de entrada. O padrão é 17;
+  - tamanho_minimo -> tamanho mínimo para as sequências de entrada. O padrão é 17;
   - random_selection -> deve ser True ou False. Define se a seleção deve ser aleatório ou pela ordem no arquivo. O padrão é True;
   - ssForm_name -> arquivo em que as sequências serão buscadas. O padrão é o arquivo resultante da função anterior, no entanto é possível utilizar também o arquivo 'Ross_Saunder.txt', presente no repositório do git-hub também. O arquivo 'Ross_Saunder.txt' contém dados de estruturas tradicionalmente utilizadas para o aprendizado de máquina;
 
@@ -23,5 +23,7 @@ A iniciação de um objeto com a classe "PSSVect" pode ser feita sem a inserçã
 - **ss2vect** -> vetoriza as estruturas secundárias;
 - **aa2vect** -> vetoriza os aminoácidos correspondentes aos dados de estrutura secundária;
 - **pss_prediction** -> a partir de uma rede neuronal treinada, faz a predição da estrutura secundária de uma sequência de aminoácidos. A primeira entrada é a sequência de aminoácidos. A segunda entrada é uma rede treinada pela MLPClassifier da biblioteca sklearn.neural_network (informações em: http://scikit-learn.org/stable/modules/neural_networks_supervised.html).
+
+**O arquivo "psstools_MLP.ipynb" tem um exemplo de utilização da "psstools.py" para preparação dos dados e análise dos resultados de uma rede neuronal perceptron multicamadas.**
 
 ##em atualização##
