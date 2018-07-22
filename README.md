@@ -26,4 +26,6 @@ A iniciação de um objeto com a classe "PSSVect" pode ser feita sem a inserçã
 
 **O arquivo "psstools_MLP.ipynb" tem um exemplo de utilização da "psstools.py" para preparação dos dados e análise dos resultados de uma rede neuronal perceptron multicamadas.**
 
+No link "https://docs.google.com/presentation/d/1AWHLiiD0_tLBXpGButXjAvTlrUHGzcOHzgyHmBOnD04/edit?usp=sharing" há o arquivo de uma apresentação introdutória sobre proteínas, redes neuronais e predição de estruturas secundárias de proteínas. 
+
 ##em atualização##
