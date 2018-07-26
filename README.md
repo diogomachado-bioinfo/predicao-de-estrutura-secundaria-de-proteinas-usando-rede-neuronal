@@ -45,12 +45,13 @@ As funções a seguir foram baseadas no procedimento apresentado pela Mathwork e
   - print ('Conjunto para treino: ',len(x_train)) #exibir tamanho do conjunto reservado para treino
   - print ('Conjunto para teste: ',len(x_test)) #exibir tamanho do conjunto reservado para teste
 
-**Se optado por alocar o conjunto de testes, é possível executar as funções de métrica para verificar os acertos:**
-  - from sklearn.metrics import confusion_matrix,classification_report,accuracy_score
-  - print(classification_report(y_test,predictions,target_names=['C','E','H']),'\n')
-  - precisao = accuracy_score(y_test, predictions)
-  - print('Precisão geral: ',precisao,'\n')
-  - pd.DataFrame(confusion_matrix(y_test.astype(int).argmax(axis=1), predictions.argmax(axis=1)))
+**Se optado por alocar o conjunto de testes, é possível fazer a predição do conjunto de teste e executar as funções de métrica para verificar os acertos:**
+  - predictions = mlp.predict(x_test) #faz a predição para os valores no conjunto de testes
+  - from sklearn.metrics import confusion_matrix,classification_report,accuracy_score #importa as dependências para as métricas
+  - print(classification_report(y_test,predictions,target_names=['C','E','H']),'\n') #exibe tabela com os resultados
+  - acuracia = accuracy_score(y_test, predictions) #calcula acurácia
+  - print('Acurácia: ',acuracia,'\n') #exibe acurácia
+  - pd.DataFrame(confusion_matrix(y_test.astype(int).argmax(axis=1), predictions.argmax(axis=1))) #exibe matriz de confusão
 
 ------------------------------------------------------------------------------
 
