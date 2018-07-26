@@ -27,13 +27,34 @@ As funções a seguir foram baseadas no procedimento apresentado pela Mathwork e
 - **aa2vect** -> vetoriza os aminoácidos correspondentes aos dados de estrutura secundária. **Exemplo de execução: 'aa_vect = aa2vect(randon_pss[0])', onde 'aa_vect' recebe os dados de 'randon_pss[0]' vetorizados**;
 
 - **pss_prediction** -> a partir de uma rede neuronal treinada, faz a predição da estrutura secundária de uma sequência de aminoácidos. A primeira entrada é a sequência de aminoácidos. A segunda entrada é uma rede treinada pela MLPClassifier da biblioteca sklearn.neural_network (informações em: http://scikit-learn.org/stable/modules/neural_networks_supervised.html). **Exemplo de execução: 'predita1=pss_prediction(seq1,mlp)', onde 'seq1' é uma sequência de aminoácidos em formato de string e mlp é uma rede treinada**;
-  - Exemplo de pipeline para treinamento de rede neuronal MLP com python:
-    - from sklearn.neural_network import MLPClassifier #importando da biblioteca sklearn a ferramenta de MLP
-    - mlp = MLPClassifier(hidden_layer_sizes=(10,10,10),max_iter=100,learning_rate_init=0.01,momentum=1,activation='relu')     #criando a rede
-    - mlp.fit(x_train,y_train) #treinando a rede, sendo x_train os atributos e y_train os rótulos
+
+------------------------------------------------------------------------------
+
+# COMO TREINAR A REDE?
+
+**Exemplo de pipeline para treinamento de rede neuronal MLP com python:**
+  - from sklearn.neural_network import MLPClassifier #importando da biblioteca sklearn a ferramenta de MLP
+  - mlp = MLPClassifier(hidden_layer_sizes=(10,10,10),max_iter=100,learning_rate_init=0.01,momentum=1,activation='relu')     #criando a rede
+  - mlp.fit(x_train,y_train) #treinando a rede, sendo x_train os atributos e y_train os rótulos
+
+**Pode ser optado por alocar parte do conjunto para teste:**
+  - from sklearn.model_selection import train_test_split #importar as dependências
+  - x=np.array(x) #preparar dados para as funções posteriores
+  - y=np.array(y) #preparar dados para as funções posteriores
+  - x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.10) #separar 10% de x e y para teste
+  - print ('Conjunto para treino: ',len(x_train)) #exibir tamanho do conjunto reservado para treino
+  - print ('Conjunto para teste: ',len(x_test)) #exibir tamanho do conjunto reservado para teste
+
+**Se optado por alocar o conjunto de testes, é possível executar as funções de métrica para verificar os acertos:**
+  - from sklearn.metrics import confusion_matrix,classification_report,accuracy_score
+  - print(classification_report(y_test,predictions,target_names=['C','E','H']),'\n')
+  - precisao = accuracy_score(y_test, predictions)
+  - print('Precisão geral: ',precisao,'\n')
+  - pd.DataFrame(confusion_matrix(y_test.astype(int).argmax(axis=1), predictions.argmax(axis=1)))
+
+------------------------------------------------------------------------------
 
 **O arquivo "psstools_MLP.ipynb" tem um exemplo de utilização da "psstools.py" para preparação dos dados e análise dos resultados de uma rede neuronal perceptron multicamadas.**
-
 
 No link "https://docs.google.com/presentation/d/1AWHLiiD0_tLBXpGButXjAvTlrUHGzcOHzgyHmBOnD04/edit?usp=sharing" há o arquivo de uma apresentação introdutória sobre proteínas, redes neuronais e predição de estruturas secundárias de proteínas. 
 
