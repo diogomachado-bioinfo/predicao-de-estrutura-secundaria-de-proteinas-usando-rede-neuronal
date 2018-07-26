@@ -11,6 +11,7 @@ Este repositório contém as ferramentas necessárias para obter e tratar dados 
 O script "psstools.py" contém as seguintes funções:
 
 **OBS.: Para utilizar as funções execute: from psstools import \***
+
 **Ao instalar o python com o Anaconda, por padrão, todas as dependências para execução do psstools são instaladas automáticamente. É possível encontrar o instalador do Anaconda em: https://www.anaconda.com/download/**
 
 - **pss_down** -> executa o download e descompactação do arquivo presente em "https://cdn.rcsb.org/etl/kabschSander/ss.txt.gz", um arquivo com os dados de estruturas secundárias de proteínas obtidos experimentalmente, mantido pelo PDB. **Exemplo de execução: pss_down()**;
