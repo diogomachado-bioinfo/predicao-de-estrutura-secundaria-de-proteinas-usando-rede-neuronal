@@ -27,12 +27,13 @@ As funções a seguir foram baseadas no procedimento apresentado pela Mathwork e
 - **aa2vect** -> vetoriza os aminoácidos correspondentes aos dados de estrutura secundária. **Exemplo de execução: 'aa_vect = aa2vect(randon_pss[0])', onde 'aa_vect' recebe os dados de 'randon_pss[0]' vetorizados**;
 
 - **pss_prediction** -> a partir de uma rede neuronal treinada, faz a predição da estrutura secundária de uma sequência de aminoácidos. A primeira entrada é a sequência de aminoácidos. A segunda entrada é uma rede treinada pela MLPClassifier da biblioteca sklearn.neural_network (informações em: http://scikit-learn.org/stable/modules/neural_networks_supervised.html). **Exemplo de execução: 'predita1=pss_prediction(seq1,mlp)', onde 'seq1' é uma sequência de aminoácidos em formato de string e mlp é uma rede treinada**;
-  - Exemplo de treinamento de rede neuronal MLP com python:
-from sklearn.neural_network import MLPClassifier #importando da biblioteca sklearn a ferramenta de MLP
-mlp = MLPClassifier(hidden_layer_sizes=(10,10,10),max_iter=100,learning_rate_init=0.01,momentum=1,activation='relu') #criando a rede
-mlp.fit(x_train,y_train) #treinando a rede, sendo x_train os atributos e y_train os rótulos
+  - Exemplo de pipeline para treinamento de rede neuronal MLP com python:
+    - from sklearn.neural_network import MLPClassifier #importando da biblioteca sklearn a ferramenta de MLP
+    - mlp = MLPClassifier(hidden_layer_sizes=(10,10,10),max_iter=100,learning_rate_init=0.01,momentum=1,activation='relu')     #criando a rede
+    - mlp.fit(x_train,y_train) #treinando a rede, sendo x_train os atributos e y_train os rótulos
 
 **O arquivo "psstools_MLP.ipynb" tem um exemplo de utilização da "psstools.py" para preparação dos dados e análise dos resultados de uma rede neuronal perceptron multicamadas.**
+
 
 No link "https://docs.google.com/presentation/d/1AWHLiiD0_tLBXpGButXjAvTlrUHGzcOHzgyHmBOnD04/edit?usp=sharing" há o arquivo de uma apresentação introdutória sobre proteínas, redes neuronais e predição de estruturas secundárias de proteínas. 
 
