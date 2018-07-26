@@ -1,6 +1,12 @@
 # Protein Secondary Structure Tools
 
+------------------------------------------------------------------------------
+
 Este repositório contém as ferramentas necessárias para obter e tratar dados de estrutura secundária de proteína para utilização em uma rede neuronal ou outro método de machine-learning. **O conteúdo aqui presente foi desenvolvido para fins didáticos**.
+
+------------------------------------------------------------------------------
+
+# FUNÇÕES EM "psstools.py"
 
 O script "psstools.py" contém as seguintes funções:
 
@@ -27,6 +33,9 @@ As funções a seguir foram baseadas no procedimento apresentado pela Mathwork e
 - **aa2vect** -> vetoriza os aminoácidos correspondentes aos dados de estrutura secundária. **Exemplo de execução: 'aa_vect = aa2vect(randon_pss[0])', onde 'aa_vect' recebe os dados de 'randon_pss[0]' vetorizados**;
 
 - **pss_prediction** -> a partir de uma rede neuronal treinada, faz a predição da estrutura secundária de uma sequência de aminoácidos. A primeira entrada é a sequência de aminoácidos. A segunda entrada é uma rede treinada pela MLPClassifier da biblioteca sklearn.neural_network (informações em: http://scikit-learn.org/stable/modules/neural_networks_supervised.html). **Exemplo de execução: 'predita1=pss_prediction(seq1,mlp)', onde 'seq1' é uma sequência de aminoácidos em formato de string e mlp é uma rede treinada**;
+
+- **pss_hitRate** -> compara um a um as posições de duas estruturas secundárias representadas em string e retorna a porcentagem de semelhança. Conveniente para comparar uma estrutura secundária predita com a real. **Exemplo de execução: porcentagem_de_acerto = pss_hitRate(real,predita)**
+
 
 ------------------------------------------------------------------------------
 
