@@ -47,8 +47,7 @@ As funções a seguir foram baseadas no procedimento apresentado pela Mathwork e
 
 **Se optado por alocar o conjunto de testes, é possível fazer a predição do conjunto de teste e executar as funções de métrica para verificar os acertos:**
   - predictions = mlp.predict(x_test) #faz a predição para os valores no conjunto de testes
-  - from sklearn.metrics import confusion_matrix,classification_report,accuracy_score #importa as dependências para as métricas
-  - print(classification_report(y_test,predictions,target_names=['C','E','H']),'\n') #exibe tabela com os resultados
+  - from sklearn.metrics import confusion_matrix,accuracy_score #importa as dependências para as métricas
   - acuracia = accuracy_score(y_test, predictions) #calcula acurácia
   - print('Acurácia: ',acuracia,'\n') #exibe acurácia
   - pd.DataFrame(confusion_matrix(y_test.astype(int).argmax(axis=1), predictions.argmax(axis=1))) #exibe matriz de confusão
