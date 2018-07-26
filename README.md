@@ -36,6 +36,18 @@ As funções a seguir foram baseadas no procedimento apresentado pela Mathwork e
 
 - **pss_hitRate** -> compara um a um as posições de duas estruturas secundárias representadas em string e retorna a porcentagem de semelhança. Conveniente para comparar uma estrutura secundária predita com a real. **Exemplo de execução: porcentagem_de_acerto = pss_hitRate(real,predita)**
 
+- **Bibliotecas chamadas em psstools que são importadas em conjunto ao executar "from psstools import \*"**:
+    - import re
+    - import numpy as np
+    - import pandas as pd
+    - from scipy.linalg import hankel
+    - import urllib.request
+    - import gzip
+    - import shutil
+    - import math
+    - import os
+    - import random
+    - import shutil
 
 ------------------------------------------------------------------------------
 
