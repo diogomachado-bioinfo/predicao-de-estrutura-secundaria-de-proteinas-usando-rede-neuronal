@@ -11,6 +11,7 @@ Este repositório contém as ferramentas necessárias para obter e tratar dados 
 O script "psstools.py" contém as seguintes funções:
 
 **OBS.: Para utilizar as funções execute: from psstools import \***
+**Ao instalar o python com o Anaconda, por padrão, todas as dependências para execução do psstools são instaladas automáticamente. É possível encontrar o instalador do Anaconda em: https://www.anaconda.com/download/**
 
 - **pss_down** -> executa o download e descompactação do arquivo presente em "https://cdn.rcsb.org/etl/kabschSander/ss.txt.gz", um arquivo com os dados de estruturas secundárias de proteínas obtidos experimentalmente, mantido pelo PDB. **Exemplo de execução: pss_down()**;
 
@@ -24,7 +25,7 @@ O script "psstools.py" contém as seguintes funções:
   - **Exemplo de execução: randon_pss = pss_load (total_de_sequencias = 125, tamanho_minimo = 100, random_selection = False, ssForm_name = 'ss2.txt')**; Ao executar esse exemplo 'randon_pss[0]' recebe os aminoácidos e 'randon_pss[1]' as estruturas secundárias;
   - **OBS.: É possível concatenar matrizes geradas com a pass_load usando: "dataset_pss=np.concatenate((matriz_1, matriz_2), axis=1)", sendo que 'dataset_pss' recebe os dados de matriz_1 e matriz_2 concatenados**
 
-- **pss_align** -> faz o alinhamento entre duas estruturas secundárias colocadas como entrada. A ssp_align utiliza o script "SSEalign_psstools.pl", uma versão modificada do script "SSEalign_two_groups.pl", disponível em "https://github.com/yangzhiyuansibs/SSEalign". O método de alinhamento utilizado foi desenvolvido por Yang et al. (artigo disponível em: https://www.biorxiv.org/content/biorxiv/early/2017/10/10/200915.full.pdf). **Exemplo de execução: 'pss_align(pss1,pss2)', sendo pss1 e pss2 representações de estruturas secundárias de proteínas no formato de string**;
+- **pss_align** -> faz o alinhamento entre duas estruturas secundárias colocadas como entrada. A ssp_align utiliza o script "SSEalign_psstools.pl", uma versão modificada do script "SSEalign_two_groups.pl", disponível em "https://github.com/yangzhiyuansibs/SSEalign". O método de alinhamento utilizado foi desenvolvido por Yang et al. (artigo disponível em: https://www.biorxiv.org/content/biorxiv/early/2017/10/10/200915.full.pdf). Para executar pss_align é necessário ter o Perl instalado, na maioria das distribuições Linux mais comuns atualmente ela já vem instalado, no entanto em Windows isso não ocorre, sendo possível fazer a instalação com o pacote "Strawberry Perl", disponível para download em "http://strawberryperl.com/". **Exemplo de execução: 'pss_align(pss1,pss2)', sendo pss1 e pss2 representações de estruturas secundárias de proteínas no formato de string**;
 
 As funções a seguir foram baseadas no procedimento apresentado pela Mathwork em "https://www.mathworks.com/help/bioinfo/examples/predicting-protein-secondary-structure-using-a-neural-network.html".
 
