@@ -12,90 +12,81 @@ import os
 import random
 import shutil
 
-
-class PSSVect:
-    def __init__(self, tamanho_janela_movel=17):
-        self.tamanho_janela_movel = tamanho_janela_movel
-
-    def aa2vect(self,aa):
-        aa_dict = {'A':0,'R':1,'N':2,'D':3,'B':4,'C':5,'E':6,'Q':7,'Z':8,'G':9,
+def aa2vect(aa,tamanho_janela_movel=17):
+    aa_dict = {'A':0,'R':1,'N':2,'D':3,'B':4,'C':5,'E':6,'Q':7,'Z':8,'G':9,
             'H':10,'I':11,'L':12,'K':13,'M':14,'F':15,'P':16,'S':17,'T':18,
             'W':19,'Y':20,'V':21,'?':22}
-        aa_num=[]
-        for i,w in enumerate(aa):
-            aa_num.append(np.array([aa_dict.get(x) for x in aa[i]]))
+    aa_num=[]
+    for i,w in enumerate(aa):
+        aa_num.append(np.array([aa_dict.get(x) for x in aa[i]]))
 
-        base_indexador = np.arange(self.tamanho_janela_movel)*23
-        self.sequencias = []
-        total_de_sequencias=len(aa)
-        for i in range (0,total_de_sequencias): #para % cada sequencia
-            seq = aa_num[i] #obter sequencia atual
-            janelas = hankel(seq[:self.tamanho_janela_movel],seq[self.tamanho_janela_movel-1:]) #obter todas as janelas moveis para a sequencia, cada coluna forma uma
-            #print (i)
-            #23 colunas para cada janela; uma linha  para cada janela:
-            matriz_binaria=np.full((np.size(janelas,1),23*self.tamanho_janela_movel), False, dtype=float)    
-            for k in range (0,np.size(janelas,1)): #para cada janela movel, ou seja, cada coluna
-                #print(k)
-                indexador = np.array(base_indexador + janelas[:,k])
-                matriz_binaria[k,indexador] = True #marca como True o valor de cada posição
-            for j in matriz_binaria:
-                self.sequencias.append(j)
-        return self.sequencias
+    base_indexador = np.arange(tamanho_janela_movel)*23
+    sequencias = []
+    total_de_sequencias=len(aa)
+    for i in range (0,total_de_sequencias): #para % cada sequencia
+        seq = aa_num[i] #obter sequencia atual
+        janelas = hankel(seq[:tamanho_janela_movel],seq[tamanho_janela_movel-1:]) #obter todas as janelas moveis para a sequencia, cada coluna forma uma
+        matriz_binaria=np.full((np.size(janelas,1),23*tamanho_janela_movel), False, dtype=float)    
+        for k in range (0,np.size(janelas,1)): #para cada janela movel, ou seja, cada coluna
+            indexador = np.array(base_indexador + janelas[:,k])
+            matriz_binaria[k,indexador] = True #marca como True o valor de cada posição
+        for j in matriz_binaria:
+            sequencias.append(j)
+    return sequencias
 
-    def pss2vect(self,ss):
-        dssp_dict = {'C':0,'E':1,'H':2}
-        ss_num=[]
-        for i,w in enumerate(ss):
-            ss_num.append(np.array([dssp_dict.get(x) for x in ss[i]]))
+def pss2vect(ss,tamanho_janela_movel=17):
+    dssp_dict = {'C':0,'E':1,'H':2}
+    ss_num=[]
+    for i,w in enumerate(ss):
+        ss_num.append(np.array([dssp_dict.get(x) for x in ss[i]]))
 
-        residuo_central = math.ceil(self.tamanho_janela_movel/2) #central residue position
-        self.estruturas=[]
-        total_de_sequencias=len(ss)
-        for i in range (0,total_de_sequencias):
-            #print(i)
-            estrutura = ss_num[i] #obter a estrutura
-            janelas = hankel(estrutura[:self.tamanho_janela_movel],estrutura[self.tamanho_janela_movel-1:])
-            matriz_binaria = np.full((3,np.size(janelas,1)), False, dtype=float)
-            matriz_binaria[0]=janelas[residuo_central]==0 #C
-            matriz_binaria[1]=janelas[residuo_central]==1 #E
-            matriz_binaria[2]=janelas[residuo_central]==2 #H
+    residuo_central = math.ceil(tamanho_janela_movel/2) #central residue position
+    estruturas=[]
+    total_de_sequencias=len(ss)
+    for i in range (0,total_de_sequencias):
+        estrutura = ss_num[i] #obter a estrutura
+        janelas = hankel(estrutura[:tamanho_janela_movel],estrutura[tamanho_janela_movel-1:])
+        matriz_binaria = np.full((3,np.size(janelas,1)), False, dtype=float)
+        matriz_binaria[0]=janelas[residuo_central]==0 #C
+        matriz_binaria[1]=janelas[residuo_central]==1 #E
+        matriz_binaria[2]=janelas[residuo_central]==2 #H
 
-            for j in matriz_binaria.T:
-                self.estruturas.append(j)
-        return self.estruturas
+        for j in matriz_binaria.T:
+            estruturas.append(j)
+    return estruturas
 
-    def pss_prediction(self,seq,mlp):
-        vect = self.aa2vect(seq)
-        predictions = mlp.predict(vect)
-        self.ss_predic=''
+def pss_prediction(seq,mlp,tamanho_janela_movel=17):
+    vect = aa2vect(seq)
+    predictions = mlp.predict(vect)
+    ss_predic=''
         
-        #inserir Cs nas primeirs posições:
-        aa_num = math.ceil((self.tamanho_janela_movel/2))
-        newaa='C'
-        self.ss_predic=(self.ss_predic+newaa*aa_num)
+    #inserir Cs nas primeirs posições:
+    aa_num = math.ceil((tamanho_janela_movel/2))
+    newaa='C'
+    ss_predic=(ss_predic+newaa*aa_num)
         
-        #inserir SSEs com base na predição da rede
-        for i in predictions:
-            if i[0]==1:
-                newaa='C'
-            elif i[1]==1:
-                newaa='E'
-            elif i[2]==1:
-                newaa='H'
-            else:   
-                newaa='C'
-            self.ss_predic=(self.ss_predic+newaa)
+    #inserir SSEs com base na predição da rede
+    for i in predictions:
+        if i[0]==1:
+            newaa='C'
+        elif i[1]==1:
+            newaa='E'
+        elif i[2]==1:
+            newaa='H'
+        else:   
+            newaa='C'
+        ss_predic=(ss_predic+newaa)
                 
-        #inserir Cs nas últimas posições:
-        aa_num = math.ceil((self.tamanho_janela_movel/2))
-        newaa='C'
-        if self.tamanho_janela_movel % 2 == 0:
-            aa_num = math.ceil(self.tamanho_janela_movel/2)-1
-        else:
-            aa_num = math.ceil((self.tamanho_janela_movel/2))-2
-        self.ss_predic=(self.ss_predic+newaa*aa_num)
+    #inserir Cs nas últimas posições:
+    aa_num = math.ceil((tamanho_janela_movel/2))
+    newaa='C'
+    if tamanho_janela_movel % 2 == 0:
+        aa_num = math.ceil(tamanho_janela_movel/2)-1
+    else:
+        aa_num = math.ceil((tamanho_janela_movel/2))-2
+    ss_predic=(ss_predic+newaa*aa_num)
         
-        return self.ss_predic
+    return ss_predic
 
 def pss_down():
     urllib.request.urlretrieve ("https://cdn.rcsb.org/etl/kabschSander/ss.txt.gz", "ss.txt.gz")
