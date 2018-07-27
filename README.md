@@ -57,7 +57,7 @@ As funções a seguir foram baseadas no procedimento apresentado pela Mathwork e
 
 # COMO TREINAR A REDE?
 
-**As funções a seguir são da biblioteca "scikit-learn" (detalhes em: "http://scikit-learn.org/stable/").**
+**Os exemplos a seguir utilizam a biblioteca "scikit-learn" (detalhes em: "http://scikit-learn.org/stable/").**
 
 **Exemplo de pipeline para treinamento de rede neuronal MLP com python:**
   - from sklearn.neural_network import MLPClassifier #importando da biblioteca sklearn a ferramenta de MLP
