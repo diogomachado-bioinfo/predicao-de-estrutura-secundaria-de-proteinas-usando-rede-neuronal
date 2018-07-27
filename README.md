@@ -8,11 +8,13 @@ Este repositório contém as ferramentas necessárias para obter e tratar dados 
 
 # FUNÇÕES EM "psstools.py"
 
-O script "psstools.py" contém as seguintes funções:
+**As funções em psstools foram criadas para realizar testes e experimentos de redes neuronais na predição de estruturas secundárias.**
 
-**OBS.: Para utilizar as funções execute: from psstools import \***
+**Para utilizar as funções execute: from psstools import \***
 
 **Ao instalar o python com o Anaconda, por padrão, todas as dependências para execução do psstools são instaladas automáticamente. É possível encontrar o instalador do Anaconda em: https://www.anaconda.com/download/**
+
+O script "psstools.py" contém as seguintes funções:
 
 - **pss_down** -> executa o download e descompactação do arquivo presente em "https://cdn.rcsb.org/etl/kabschSander/ss.txt.gz", um arquivo com os dados de estruturas secundárias de proteínas obtidos experimentalmente, mantido pelo PDB. **Exemplo de execução: pss_down()**;
 
@@ -54,6 +56,8 @@ As funções a seguir foram baseadas no procedimento apresentado pela Mathwork e
 ------------------------------------------------------------------------------
 
 # COMO TREINAR A REDE?
+
+**As funções a seguir são da biblioteca "scikit-learn" (detalhes em: "http://scikit-learn.org/stable/").**
 
 **Exemplo de pipeline para treinamento de rede neuronal MLP com python:**
   - from sklearn.neural_network import MLPClassifier #importando da biblioteca sklearn a ferramenta de MLP
